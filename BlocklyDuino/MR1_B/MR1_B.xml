@@ -1,0 +1,220 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="867" x="-212" y="-87">
+    <statement name="CONTENT">
+      <block type="serial_init" id="868" inline="false">
+        <value name="SPEED">
+          <block type="math_number" id="869">
+            <field name="NUM">115200</field>
+          </block>
+        </value>
+        <next>
+          <block type="serial_println" id="1040" inline="false">
+            <value name="CONTENT">
+              <block type="text" id="1041">
+                <field name="TEXT">使用內建按鈕操作車頭燈</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="1044" inline="true">
+                <field name="TYPE">Number</field>
+                <field name="VAR">debounce_time</field>
+                <value name="VALUE">
+                  <block type="math_number" id="882">
+                    <field name="NUM">100</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="1065" inline="true">
+                    <field name="TYPE">Number</field>
+                    <field name="VAR">light</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="1090">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="870">
+        <statement name="CONTENT">
+          <block type="controls_if" id="899" inline="false">
+            <value name="IF0">
+              <block type="logic_compare" id="917" inline="true">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="inout_digital_read" id="911">
+                    <field name="PIN">6</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="inout_highlow" id="953">
+                    <field name="BOOL">HIGH</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="serial_println" id="871" inline="false">
+                <value name="CONTENT">
+                  <block type="text" id="872">
+                    <field name="TEXT">按鈕被按下</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="delay_custom" id="881" inline="false">
+                    <value name="DELAY_TIME">
+                      <block type="variables_get" id="1049">
+                        <field name="TYPE">Number</field>
+                        <field name="VAR">debounce_time</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_if" id="1055" inline="false">
+                        <value name="IF0">
+                          <block type="logic_compare" id="1119" inline="true">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="inout_digital_read" id="1120">
+                                <field name="PIN">6</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="inout_highlow" id="1121">
+                                <field name="BOOL">HIGH</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="serial_println" id="1117" inline="false">
+                            <value name="CONTENT">
+                              <block type="text" id="1118">
+                                <field name="TEXT">按鈕持續被按下超過抖動時間</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="controls_if" id="1304" inline="false">
+                                <mutation else="1"></mutation>
+                                <value name="IF0">
+                                  <block type="logic_compare" id="1310" inline="true">
+                                    <field name="OP">EQ</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="1317">
+                                        <field name="TYPE">Number</field>
+                                        <field name="VAR">light</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="1334">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="variables_set" id="1128" inline="true">
+                                    <field name="TYPE">Number</field>
+                                    <field name="VAR">light</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="1342">
+                                        <field name="NUM">1</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                                <statement name="ELSE">
+                                  <block type="variables_set" id="1343" inline="true">
+                                    <field name="TYPE">Number</field>
+                                    <field name="VAR">light</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="1344">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="1096" inline="false">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare" id="1102" inline="true">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="variables_get" id="1109">
+                        <field name="TYPE">Number</field>
+                        <field name="VAR">light</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="1110">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="serial_println" id="1115" inline="false">
+                    <value name="CONTENT">
+                      <block type="text" id="1116">
+                        <field name="TEXT">開燈</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="inout_digital_write" id="873">
+                        <field name="PIN">2</field>
+                        <field name="STAT">HIGH</field>
+                        <next>
+                          <block type="inout_digital_write" id="1345">
+                            <field name="PIN">3</field>
+                            <field name="STAT">HIGH</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="serial_println" id="877" inline="false">
+                    <value name="CONTENT">
+                      <block type="text" id="878">
+                        <field name="TEXT">關燈</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="inout_digital_write" id="879">
+                        <field name="PIN">2</field>
+                        <field name="STAT">LOW</field>
+                        <next>
+                          <block type="inout_digital_write" id="1346">
+                            <field name="PIN">3</field>
+                            <field name="STAT">LOW</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

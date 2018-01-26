@@ -1,0 +1,77 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1" x="-162" y="-12">
+    <statement name="CONTENT">
+      <block type="serial_init" id="759" inline="false">
+        <value name="SPEED">
+          <block type="math_number" id="760">
+            <field name="NUM">115200</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="2">
+        <statement name="CONTENT">
+          <block type="serial_println" id="780" inline="false">
+            <value name="CONTENT">
+              <block type="text" id="781">
+                <field name="TEXT">開燈</field>
+              </block>
+            </value>
+            <next>
+              <block type="inout_digital_write" id="60">
+                <field name="PIN">4</field>
+                <field name="STAT">HIGH</field>
+                <next>
+                  <block type="inout_digital_write" id="72">
+                    <field name="PIN">5</field>
+                    <field name="STAT">HIGH</field>
+                    <next>
+                      <block type="delay_custom" id="715" inline="false">
+                        <value name="DELAY_TIME">
+                          <block type="math_number" id="716">
+                            <field name="NUM">1000</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="serial_println" id="782" inline="false">
+                            <value name="CONTENT">
+                              <block type="text" id="783">
+                                <field name="TEXT">關燈</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="inout_digital_write" id="717">
+                                <field name="PIN">4</field>
+                                <field name="STAT">LOW</field>
+                                <next>
+                                  <block type="inout_digital_write" id="718">
+                                    <field name="PIN">5</field>
+                                    <field name="STAT">LOW</field>
+                                    <next>
+                                      <block type="delay_custom" id="719" inline="false">
+                                        <value name="DELAY_TIME">
+                                          <block type="math_number" id="720">
+                                            <field name="NUM">1000</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
